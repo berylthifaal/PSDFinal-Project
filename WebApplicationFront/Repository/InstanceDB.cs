@@ -6,7 +6,7 @@ using WebApplicationFront.Model;
 
 namespace WebApplicationFront.Repository
 {
-    public class DBInstance
+    public class InstanceDB
     {
         private static Database1Entities instance;
 

@@ -8,6 +8,8 @@ namespace WebApplicationFront.Repository
 {
     public class UserRepository
     {
+        private static Database1Entities db = InstanceDB.getInstance();
+
         public static void createNewMsUser(MsUser newUser)
         {
             db.MsUsers.Add(newUser);
@@ -16,20 +18,35 @@ namespace WebApplicationFront.Repository
 
         public static List<MsUser> getAllMsUser()
         {
-            Database1Entities db = DBInstance.getInstance();
+            Database1Entities db = InstanceDB.getInstance();
+            db = InstanceDB.getInstance();
             return db.MsUsers.ToList();
         }
 
         public static MsUser getMsUser(String username)
         {
-            return db.MsUsers.Where((u) => u.UserName == username).ToList().FirstOrDefault();
+            return (from x in db.MsUsers
+                    where x.UserName.Equals(username)
+                    select x).FirstOrDefault();
+        }
+
+        public static MsUser getMsUserById(int id)
+        {
+            return db.MsUsers.Where((u) => u.UserID == id).ToList().FirstOrDefault();
+        }
+
+        public static int getId (String username)
+        {
+            var x = (from y in db.MsUsers
+                     where y.UserName.Equals(username)
+                     select y.UserID).FirstOrDefault();
+            return x;
         }
 
 
-        public static void updateMsUser(String username, String email, DateTime DOB, String gender, String role)
+        public static void updateMsUser(int id, String username, String email, DateTime DOB, String gender)
         {
-            Database1Entities db = DBInstance.getInstance();
-            MsUser currentMsUser = getMsUser(username);
+            MsUser currentMsUser = getMsUserById(id);
             currentMsUser.UserName = username;
             currentMsUser.UserEmail = email;
             currentMsUser.UserDOB = DOB;
@@ -39,11 +56,24 @@ namespace WebApplicationFront.Repository
 
         public static void updateMsUserPassword(String username, String newPassword)
         {
-            Database1Entities db = DBInstance.getInstance();
+            Database1Entities db = InstanceDB.getInstance();
             MsUser currentUser = getMsUser(username);
             currentUser.Password = newPassword;
             db.SaveChanges();
         }
 
+        public static String getUsername (String username)
+        {
+            return (from x in db.MsUsers
+                    where x.UserName.Equals(username)
+                    select x.UserName).FirstOrDefault();    
+        }
+
+        public static String getPassword (String password)
+        {
+            return (from x in db.MsUsers
+                    where x.Password.Equals(password)
+                    select x.Password).FirstOrDefault();
+        }
     }
 }

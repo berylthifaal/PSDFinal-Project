@@ -21,7 +21,7 @@ namespace WebApplicationFront.Handler
             MsUser currentUser = UserRepository.getMsUser(username);
             if (currentUser == null)
             {
-                return "user not exits";
+                return "user not exist";
             }
 
             if (currentUser.Password != password)
@@ -37,14 +37,41 @@ namespace WebApplicationFront.Handler
             return UserRepository.getMsUser(username);
         }
 
-        public static void update(String username, String email, DateTime DOB, String gender, String role)
+        public static List<MsUser> getAllUsers()
         {
-            UserRepository.updateMsUser(username, email, DOB, gender, role);
+            return UserRepository.getAllMsUser();
         }
 
-        public static void updatePassword(String username, String password)
+        public static void updateUserProfile(int id, String username, String email, DateTime DOB, String gender)
         {
-            UserRepository.updateMsUserPassword(username, password);
+            UserRepository.updateMsUser(id, username, email, DOB, gender);
+        }
+
+        public static Boolean updatePassword(String username, String oldPassword, String newPassword)
+        {
+            MsUser user = UserRepository.getMsUser(username);
+            if (user.Password != oldPassword)
+            {
+                return false;
+            }
+
+            UserRepository.updateMsUserPassword(username, newPassword);
+            return true;
+        }
+
+        public static int getId(String username)
+        {
+           return UserRepository.getId(username);
+        }
+
+        public static String getUsername(String username)
+        {
+            return UserRepository.getUsername(username);    
+        }
+
+        public static String getPassword (String pass)
+        {
+            return UserRepository.getPassword(pass);
         }
     }
 }

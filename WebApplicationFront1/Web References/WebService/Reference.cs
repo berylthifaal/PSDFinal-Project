@@ -37,7 +37,21 @@ namespace WebApplicationFront1.WebService {
         
         private System.Threading.SendOrPostCallback getUserOperationCompleted;
         
+        private System.Threading.SendOrPostCallback getAllUserOperationCompleted;
+        
         private System.Threading.SendOrPostCallback getSupplementListOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback createNewSupplementOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback updateSupplementOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback deleteSupplementOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback getCartListOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback addNewCartOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback clearCartOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -90,7 +104,28 @@ namespace WebApplicationFront1.WebService {
         public event getUserCompletedEventHandler getUserCompleted;
         
         /// <remarks/>
+        public event getAllUserCompletedEventHandler getAllUserCompleted;
+        
+        /// <remarks/>
         public event getSupplementListCompletedEventHandler getSupplementListCompleted;
+        
+        /// <remarks/>
+        public event createNewSupplementCompletedEventHandler createNewSupplementCompleted;
+        
+        /// <remarks/>
+        public event updateSupplementCompletedEventHandler updateSupplementCompleted;
+        
+        /// <remarks/>
+        public event deleteSupplementCompletedEventHandler deleteSupplementCompleted;
+        
+        /// <remarks/>
+        public event getCartListCompletedEventHandler getCartListCompleted;
+        
+        /// <remarks/>
+        public event addNewCartCompletedEventHandler addNewCartCompleted;
+        
+        /// <remarks/>
+        public event clearCartCompletedEventHandler clearCartCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -218,6 +253,33 @@ namespace WebApplicationFront1.WebService {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/getAllUser", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string getAllUser() {
+            object[] results = this.Invoke("getAllUser", new object[0]);
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getAllUserAsync() {
+            this.getAllUserAsync(null);
+        }
+        
+        /// <remarks/>
+        public void getAllUserAsync(object userState) {
+            if ((this.getAllUserOperationCompleted == null)) {
+                this.getAllUserOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetAllUserOperationCompleted);
+            }
+            this.InvokeAsync("getAllUser", new object[0], this.getAllUserOperationCompleted, userState);
+        }
+        
+        private void OngetAllUserOperationCompleted(object arg) {
+            if ((this.getAllUserCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getAllUserCompleted(this, new getAllUserCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/getSupplementList", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public string getSupplementList() {
             object[] results = this.Invoke("getSupplementList", new object[0]);
@@ -241,6 +303,193 @@ namespace WebApplicationFront1.WebService {
             if ((this.getSupplementListCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.getSupplementListCompleted(this, new getSupplementListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/createNewSupplement", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void createNewSupplement(string name, System.DateTime date, int price, int TypeId) {
+            this.Invoke("createNewSupplement", new object[] {
+                        name,
+                        date,
+                        price,
+                        TypeId});
+        }
+        
+        /// <remarks/>
+        public void createNewSupplementAsync(string name, System.DateTime date, int price, int TypeId) {
+            this.createNewSupplementAsync(name, date, price, TypeId, null);
+        }
+        
+        /// <remarks/>
+        public void createNewSupplementAsync(string name, System.DateTime date, int price, int TypeId, object userState) {
+            if ((this.createNewSupplementOperationCompleted == null)) {
+                this.createNewSupplementOperationCompleted = new System.Threading.SendOrPostCallback(this.OncreateNewSupplementOperationCompleted);
+            }
+            this.InvokeAsync("createNewSupplement", new object[] {
+                        name,
+                        date,
+                        price,
+                        TypeId}, this.createNewSupplementOperationCompleted, userState);
+        }
+        
+        private void OncreateNewSupplementOperationCompleted(object arg) {
+            if ((this.createNewSupplementCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.createNewSupplementCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/updateSupplement", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void updateSupplement(int supplementId, string name, System.DateTime date, int price, int TypeId) {
+            this.Invoke("updateSupplement", new object[] {
+                        supplementId,
+                        name,
+                        date,
+                        price,
+                        TypeId});
+        }
+        
+        /// <remarks/>
+        public void updateSupplementAsync(int supplementId, string name, System.DateTime date, int price, int TypeId) {
+            this.updateSupplementAsync(supplementId, name, date, price, TypeId, null);
+        }
+        
+        /// <remarks/>
+        public void updateSupplementAsync(int supplementId, string name, System.DateTime date, int price, int TypeId, object userState) {
+            if ((this.updateSupplementOperationCompleted == null)) {
+                this.updateSupplementOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupdateSupplementOperationCompleted);
+            }
+            this.InvokeAsync("updateSupplement", new object[] {
+                        supplementId,
+                        name,
+                        date,
+                        price,
+                        TypeId}, this.updateSupplementOperationCompleted, userState);
+        }
+        
+        private void OnupdateSupplementOperationCompleted(object arg) {
+            if ((this.updateSupplementCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.updateSupplementCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/deleteSupplement", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void deleteSupplement(int supplementId) {
+            this.Invoke("deleteSupplement", new object[] {
+                        supplementId});
+        }
+        
+        /// <remarks/>
+        public void deleteSupplementAsync(int supplementId) {
+            this.deleteSupplementAsync(supplementId, null);
+        }
+        
+        /// <remarks/>
+        public void deleteSupplementAsync(int supplementId, object userState) {
+            if ((this.deleteSupplementOperationCompleted == null)) {
+                this.deleteSupplementOperationCompleted = new System.Threading.SendOrPostCallback(this.OndeleteSupplementOperationCompleted);
+            }
+            this.InvokeAsync("deleteSupplement", new object[] {
+                        supplementId}, this.deleteSupplementOperationCompleted, userState);
+        }
+        
+        private void OndeleteSupplementOperationCompleted(object arg) {
+            if ((this.deleteSupplementCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.deleteSupplementCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/getCartList", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string getCartList(int id) {
+            object[] results = this.Invoke("getCartList", new object[] {
+                        id});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getCartListAsync(int id) {
+            this.getCartListAsync(id, null);
+        }
+        
+        /// <remarks/>
+        public void getCartListAsync(int id, object userState) {
+            if ((this.getCartListOperationCompleted == null)) {
+                this.getCartListOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetCartListOperationCompleted);
+            }
+            this.InvokeAsync("getCartList", new object[] {
+                        id}, this.getCartListOperationCompleted, userState);
+        }
+        
+        private void OngetCartListOperationCompleted(object arg) {
+            if ((this.getCartListCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getCartListCompleted(this, new getCartListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/addNewCart", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void addNewCart(int userId, int supplementId, int quantity) {
+            this.Invoke("addNewCart", new object[] {
+                        userId,
+                        supplementId,
+                        quantity});
+        }
+        
+        /// <remarks/>
+        public void addNewCartAsync(int userId, int supplementId, int quantity) {
+            this.addNewCartAsync(userId, supplementId, quantity, null);
+        }
+        
+        /// <remarks/>
+        public void addNewCartAsync(int userId, int supplementId, int quantity, object userState) {
+            if ((this.addNewCartOperationCompleted == null)) {
+                this.addNewCartOperationCompleted = new System.Threading.SendOrPostCallback(this.OnaddNewCartOperationCompleted);
+            }
+            this.InvokeAsync("addNewCart", new object[] {
+                        userId,
+                        supplementId,
+                        quantity}, this.addNewCartOperationCompleted, userState);
+        }
+        
+        private void OnaddNewCartOperationCompleted(object arg) {
+            if ((this.addNewCartCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.addNewCartCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/clearCart", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void clearCart(int id) {
+            this.Invoke("clearCart", new object[] {
+                        id});
+        }
+        
+        /// <remarks/>
+        public void clearCartAsync(int id) {
+            this.clearCartAsync(id, null);
+        }
+        
+        /// <remarks/>
+        public void clearCartAsync(int id, object userState) {
+            if ((this.clearCartOperationCompleted == null)) {
+                this.clearCartOperationCompleted = new System.Threading.SendOrPostCallback(this.OnclearCartOperationCompleted);
+            }
+            this.InvokeAsync("clearCart", new object[] {
+                        id}, this.clearCartOperationCompleted, userState);
+        }
+        
+        private void OnclearCartOperationCompleted(object arg) {
+            if ((this.clearCartCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.clearCartCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -347,6 +596,32 @@ namespace WebApplicationFront1.WebService {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    public delegate void getAllUserCompletedEventHandler(object sender, getAllUserCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getAllUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getAllUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
     public delegate void getSupplementListCompletedEventHandler(object sender, getSupplementListCompletedEventArgs e);
     
     /// <remarks/>
@@ -370,6 +645,52 @@ namespace WebApplicationFront1.WebService {
             }
         }
     }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    public delegate void createNewSupplementCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    public delegate void updateSupplementCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    public delegate void deleteSupplementCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    public delegate void getCartListCompletedEventHandler(object sender, getCartListCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getCartListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getCartListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    public delegate void addNewCartCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9032.0")]
+    public delegate void clearCartCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
 }
 
 #pragma warning restore 1591

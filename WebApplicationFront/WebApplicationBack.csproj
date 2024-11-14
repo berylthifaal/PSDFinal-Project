@@ -93,11 +93,35 @@
       <LastGenOutput>DatabaseModel.cs</LastGenOutput>
     </Content>
     <Content Include="Service\WebService.asmx" />
+    <Content Include="View\Admin\InsertTypePage.aspx" />
+    <Content Include="View\Admin\UpdateProfileAdmin.aspx" />
+    <Content Include="View\Customer\CartPage.aspx" />
+    <Content Include="View\Admin\HomePage.aspx" />
+    <Content Include="View\Admin\InsertPage.aspx" />
+    <Content Include="View\Admin\ManagePage.aspx" />
+    <Content Include="View\Customer\CustomerProfilePage.aspx" />
+    <Content Include="View\Customer\UpdateCustomer.aspx" />
+    <Content Include="View\LoginPage.aspx" />
+    <Content Include="View\Admin\OrderQueue.aspx" />
+    <Content Include="View\Customer\OrderSupplementPage.aspx" />
+    <Content Include="View\Admin\ProfilePage.aspx" />
+    <Content Include="View\Admin\UpdatePage.aspx" />
+    <Content Include="View\RegisterPage.aspx" />
+    <Content Include="View\ResetPasswordPage.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\SupplementController.cs" />
+    <Compile Include="Controller\TransactionController.cs" />
+    <Compile Include="Controller\UserController.cs" />
+    <Compile Include="Factory\CartFactory.cs" />
+    <Compile Include="Factory\SupplementFactory.cs" />
+    <Compile Include="Factory\TransactionDetailFactory.cs" />
+    <Compile Include="Factory\TransactionHeaderFactory.cs" />
     <Compile Include="Factory\UserFactory.cs" />
+    <Compile Include="Handler\CartHandler.cs" />
     <Compile Include="Handler\SupplementHandler.cs" />
+    <Compile Include="Handler\TransactionHandler.cs" />
     <Compile Include="Handler\UserHandler.cs" />
     <Compile Include="Model\DatabaseModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -134,12 +158,121 @@
     </Compile>
     <Compile Include="Module\json.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\CartRepository.cs" />
     <Compile Include="Repository\InstanceDB.cs" />
     <Compile Include="Repository\SupplementRepository.cs" />
+    <Compile Include="Repository\TransactionDetailRepo.cs" />
+    <Compile Include="Repository\TransactionHeaderRepo.cs" />
+    <Compile Include="Repository\TransactionRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Service\WebService.asmx.cs">
       <DependentUpon>WebService.asmx</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Admin\InsertTypePage.aspx.cs">
+      <DependentUpon>InsertTypePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Admin\InsertTypePage.aspx.designer.cs">
+      <DependentUpon>InsertTypePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\UpdateProfileAdmin.aspx.cs">
+      <DependentUpon>UpdateProfileAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Admin\UpdateProfileAdmin.aspx.designer.cs">
+      <DependentUpon>UpdateProfileAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Customer\CartPage.aspx.cs">
+      <DependentUpon>CartPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Customer\CartPage.aspx.designer.cs">
+      <DependentUpon>CartPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\HomePage.aspx.cs">
+      <DependentUpon>HomePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Admin\HomePage.aspx.designer.cs">
+      <DependentUpon>HomePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\InsertPage.aspx.cs">
+      <DependentUpon>InsertPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Admin\InsertPage.aspx.designer.cs">
+      <DependentUpon>InsertPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\ManagePage.aspx.cs">
+      <DependentUpon>ManagePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Admin\ManagePage.aspx.designer.cs">
+      <DependentUpon>ManagePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Customer\CustomerProfilePage.aspx.cs">
+      <DependentUpon>CustomerProfilePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Customer\CustomerProfilePage.aspx.designer.cs">
+      <DependentUpon>CustomerProfilePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Customer\UpdateCustomer.aspx.cs">
+      <DependentUpon>UpdateCustomer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Customer\UpdateCustomer.aspx.designer.cs">
+      <DependentUpon>UpdateCustomer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\LoginPage.aspx.cs">
+      <DependentUpon>LoginPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\LoginPage.aspx.designer.cs">
+      <DependentUpon>LoginPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\OrderQueue.aspx.cs">
+      <DependentUpon>OrderQueue.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Admin\OrderQueue.aspx.designer.cs">
+      <DependentUpon>OrderQueue.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Customer\OrderSupplementPage.aspx.cs">
+      <DependentUpon>OrderSupplementPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Customer\OrderSupplementPage.aspx.designer.cs">
+      <DependentUpon>OrderSupplementPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\ProfilePage.aspx.cs">
+      <DependentUpon>ProfilePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Admin\ProfilePage.aspx.designer.cs">
+      <DependentUpon>ProfilePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\UpdatePage.aspx.cs">
+      <DependentUpon>UpdatePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Admin\UpdatePage.aspx.designer.cs">
+      <DependentUpon>UpdatePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\RegisterPage.aspx.cs">
+      <DependentUpon>RegisterPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\RegisterPage.aspx.designer.cs">
+      <DependentUpon>RegisterPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\ResetPasswordPage.aspx.cs">
+      <DependentUpon>ResetPasswordPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\ResetPasswordPage.aspx.designer.cs">
+      <DependentUpon>ResetPasswordPage.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -161,7 +294,13 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Dataset\" />
+    <Folder Include="SetData\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -177,7 +316,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>54702</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44390/</IISUrl>
+          <IISUrl>https://localhost:44390</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

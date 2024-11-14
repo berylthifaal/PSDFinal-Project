@@ -10,7 +10,6 @@ namespace WebApplicationFront.Repository
     {
         public static void createNewMsUser(MsUser newUser)
         {
-            Database1Entities db = DBInstance.getInstance();
             db.MsUsers.Add(newUser);
             db.SaveChanges();
         }
@@ -23,7 +22,6 @@ namespace WebApplicationFront.Repository
 
         public static MsUser getMsUser(String username)
         {
-            Database1Entities db = DBInstance.getInstance();
             return db.MsUsers.Where((u) => u.UserName == username).ToList().FirstOrDefault();
         }
 
@@ -36,7 +34,6 @@ namespace WebApplicationFront.Repository
             currentMsUser.UserEmail = email;
             currentMsUser.UserDOB = DOB;
             currentMsUser.UserGender = gender;
-            currentMsUser.UserRole = role;
             db.SaveChanges();
         }
 
